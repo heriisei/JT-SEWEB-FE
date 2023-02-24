@@ -31,6 +31,7 @@ dependencies:
   '@emotion/css': 11.10.6
   pinia: 2.0.32_mt5olnlhyki2l6kwulhrwwyxzm
   vue: 2.7.14
+  vue-multiselect: 2.1.7
   vue-router: 3.6.5_vue@2.7.14
 
 devDependencies:
@@ -50,7 +51,6 @@ devDependencies:
   typescript: 4.7.4
   vite: 3.2.5_h444ofwn6qo2nupbn4t5gveu3m
   vitest: 0.18.1_jsdom@20.0.3+terser@5.16.5
-  vue-multiselect: 2.1.7
   vue-template-compiler: 2.7.14
   vue-tsc: 0.38.9_typescript@4.7.4
 
@@ -3163,7 +3163,7 @@ packages:
   /vue-multiselect/2.1.7:
     resolution: {integrity: sha512-KIegcN+Ntwg3cbkY/jhw2s/+XJUM0Lpi/LcKFYCS8PrZHcWBl2iKCVze7ZCnRj3w8H7/lUJ9v7rj9KQiNxApBw==}
     engines: {node: '>= 4.0.0', npm: '>= 3.0.0'}
-    dev: true
+    dev: false
 
   /vue-router/3.6.5_vue@2.7.14:
     resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}
