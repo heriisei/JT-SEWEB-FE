@@ -11,6 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@chakra-ui/vue": "^0.13.0",
+    "@emotion/css": "^11.10.6",
     "pinia": "^2.0.16",
     "vue": "^2.7.7",
     "vue-router": "^3.5.4"
