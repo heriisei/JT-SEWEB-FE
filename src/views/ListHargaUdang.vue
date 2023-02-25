@@ -1,7 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { CBox, CButton } from '@chakra-ui/vue'
 import Multiselect from 'vue-multiselect'
+import { RepositoryFactory } from '@/repositories/RepositoryFactory'
+const RegionsRepository = RepositoryFactory.get('regions')
+const PricesRepository = RepositoryFactory.get('prices')
+
+const allRegions = ref({})
+const allPrices = ref({})
+
+onBeforeMount(async () => {
+  try {
+    allRegions.value = await RegionsRepository.get('ce')
+    allPrices.value = await PricesRepository.get(2310)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 const value = ref('')
 const options = ['Select option', 'options', 'selected', 'multiple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched']
@@ -19,6 +34,12 @@ const options = ['Select option', 'options', 'selected', 'multiple', 'label', 's
       <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false"
         placeholder="Pick a value"></multiselect>
       <pre class="language-json"><code>{{ value }}</code></pre>
+      <div>
+        {{ allRegions }}
+      </div>
+      <div>
+        {{ allPrices }}
+      </div>
     </div>
   </main>
 </template>
