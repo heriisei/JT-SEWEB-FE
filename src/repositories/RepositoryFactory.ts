@@ -1,4 +1,3 @@
-import type { AxiosResponse } from "axios";
 import regionsRepository from "./regionsRepository"
 import pricesRepository from "./pricesRepository"
 
