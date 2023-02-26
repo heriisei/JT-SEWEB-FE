@@ -17,7 +17,22 @@ const i18n = new VueI18n({
 })
 
 Vue.use(PiniaVuePlugin)
-Vue.use(Chakra)
+Vue.use(Chakra, {
+  extendTheme: {
+    colors: {},
+    baseStyles: {
+      CButton: {
+        bg: "var(--brand-base)",
+        px: "12px",
+        py: "6px",
+        color: "#fff",
+        _hover: {
+          bg: "var(--brand-darker)",
+        }
+      }
+    }
+  }
+})
 
 new Vue({
   router,
