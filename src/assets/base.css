@@ -84,16 +84,21 @@ body {
 }
 
 .wrapper {
-  --padding-x-desktop: calc(.5rem + .625rem);
+  --padding-x-desktop: .5rem;
   padding: 0;
 }
 
 .wrapper-break {
+  --padding-x-desktop: .625rem;
   margin: 0 -.625rem;
 }
 
 @media screen and (min-width: 1024px) {
   .wrapper {
+    padding: 0 var(--padding-x-desktop);
+  }
+
+  .wrapper-break {
     padding: 0 var(--padding-x-desktop);
   }
 }
