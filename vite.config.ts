@@ -5,7 +5,7 @@ import legacy from '@vitejs/plugin-legacy'
 import vue2 from '@vitejs/plugin-vue2'
 
 import UnoCSS from 'unocss/vite'
-import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { presetWind, transformerVariantGroup } from 'unocss'
 import presetIcons from '@unocss/preset-icons'
 
 // https://vitejs.dev/config/
@@ -21,6 +21,7 @@ export default defineConfig({
         transformerVariantGroup(),
       ],
       presets: [
+        presetWind(),
         presetIcons(),
       ]
     }),
