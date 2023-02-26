@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { CBox, CButton } from '@chakra-ui/vue'
-import FieldSelectSearch from './../components/fields/FieldSelectSearch.vue'
+import FilterShrimpPricesByLocation from '@/components/filter/FilterShrimpPricesByLocation.vue';
+import dayjs from 'dayjs';
 </script>
 
 <template>
-  <main>
-    <c-box>
-      <c-button>
-        Chakra Consumed! ⚡️
-      </c-button>
-    </c-box>
-    <field-select-search></field-select-search>
+  <main class="container">
+    <div class="wrapper-break bg-#fff">
+      <filter-shrimp-prices-by-location></filter-shrimp-prices-by-location>
+    </div>
   </main>
 </template>

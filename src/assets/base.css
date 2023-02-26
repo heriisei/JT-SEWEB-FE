@@ -23,23 +23,24 @@
   --brand-base: #1b77df;
   --brand-darker: #1a75da;
   --brand-darkest: #004492;
-
-  --border-color: #ccc;
+  --c-black-1: #676a6c;
+  --c-gray-1: #eaeff5;
+  --c-gray-2: #ccc;
 }
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+  /* --color-border: var(--vt-c-divider-light-2); */
+  /* --color-heading: var(--vt-c-text-light-1); */
+  --color-text: var(--c-black-1);
+  /* --section-gap: 160px; */
+  
+  --color-background: var(--c-gray-1);
+  /* --color-background-soft: var(--vt-c-white-soft); */
+  /* --color-background-mute: var(--vt-c-white-mute); */
+  
+  --color-border: var(--c-gray-2);
+  /* --color-border-hover: var(--vt-c-divider-light-1); */
 }
 /* 
 @media (prefers-color-scheme: dark) {
@@ -69,12 +70,30 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  /* transition: color 0.5s, background-color 0.5s; */
-  /* line-height: 1.6; */
-  /* font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; */
+  line-height: 1.428571429;
+  font-family: 'Open Sans', -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  padding: 0 .625rem;
+  width: 100%;
+}
+
+.wrapper {
+  --padding-x-desktop: calc(.5rem + .625rem);
+  padding: 0;
+}
+
+.wrapper-break {
+  margin: 0 -.625rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    padding: 0 var(--padding-x-desktop);
+  }
 }

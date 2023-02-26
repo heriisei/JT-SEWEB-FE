@@ -48,6 +48,20 @@ Vue.use(Chakra, {
   extendTheme: {
     colors: {},
     baseStyles: {
+      CSelect: {
+        borderColor: "var(--color-border)",
+        _focus: {
+          boxShadow: '0 0 0 1px var(--brand-base)',
+          borderColor: "var(--brand-base)",
+        },
+      },
+      CInput: {
+        borderColor: "var(--color-border)",
+        _focus: {
+          boxShadow: '0 0 0 1px var(--brand-base)',
+          borderColor: "var(--brand-base)",
+        },
+      },
       CButton: {
         bg: "var(--brand-base)",
         px: "12px",
@@ -56,7 +70,7 @@ Vue.use(Chakra, {
         _hover: {
           bg: "var(--brand-darker)",
         }
-      }
+      },
     }
   }
 })
