@@ -4,6 +4,10 @@ import { defineConfig } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
 import vue2 from '@vitejs/plugin-vue2'
 
+import UnoCSS from 'unocss/vite'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
+import presetIcons from '@unocss/preset-icons'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -11,7 +15,15 @@ export default defineConfig({
     legacy({
       targets: ['ie >= 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-    })
+    }),
+    UnoCSS({
+      transformers: [
+        transformerVariantGroup(),
+      ],
+      presets: [
+        presetIcons(),
+      ]
+    }),
   ],
   resolve: {
     alias: {
