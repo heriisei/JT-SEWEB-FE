@@ -1,7 +1,7 @@
 import id from './id'
-// import enUS from './en-US';
+import en from './en'
 
 export default {
-  'id': id 
-  // 'en-US': enUS,
+  'id': id,
+  'en': en,
 };

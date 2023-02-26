@@ -19,7 +19,23 @@ import 'dayjs/locale/id';
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'id',
-  messages
+  messages,
+  numberFormats: {
+    id: {
+      currency: {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0,
+      },
+    },
+    en: {
+      currency: {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0,
+      },
+    },
+  },
 })
 
 // Dayjs
