@@ -35,9 +35,9 @@ const onOpen = (select$: Record<string, any>) => {
 
 <template>
   <div>
-    <Multiselect v-model="selectedRegion" placeholder="Pilih lokasi" :filter-results="false" :min-chars="0"
+    <Multiselect v-model="selectedRegion" :placeholder="$t('locationChoose')" :filter-results="false" :min-chars="0"
       :resolve-on-load="false" :delay="0" :searchable="true" :object="true" trackBy="id" label="full_name" valueProp="id"
-      @open="onOpen" :options="searchRegions" :loading="selectRegionIsLoading" noResultsText="Lokasi tidak ditemukan" />
+      @open="onOpen" :options="searchRegions" :loading="selectRegionIsLoading" :noResultsText="$t('locationNA')" />
     <pre class="language-json"><code>{{ selectedRegion }}</code></pre>
   </div>
 </template>
