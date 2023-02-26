@@ -1,21 +1,31 @@
 import Vue from 'vue'
-import VueI18n from 'vue-i18n'
-import { createPinia, PiniaVuePlugin } from 'pinia'
-import Chakra, { CThemeProvider, CReset } from '@chakra-ui/vue'
-
 import App from './App.vue'
 import router from './router'
+import { createPinia, PiniaVuePlugin } from 'pinia'
+
+import VueI18n from 'vue-i18n'
+import messages from './locales'
+
+import Chakra, { CThemeProvider, CReset } from '@chakra-ui/vue'
 
 import './assets/main.css'
 import 'uno.css'
 
-import messages from './locales'
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import 'dayjs/locale/id';
 
+// VueI18n
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'id',
   messages
 })
+
+// Dayjs
+dayjs.extend(localizedFormat);
+dayjs.locale('id');
+
 
 Vue.use(PiniaVuePlugin)
 Vue.use(Chakra, {
