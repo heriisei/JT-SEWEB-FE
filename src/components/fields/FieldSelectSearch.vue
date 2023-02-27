@@ -1,28 +1,21 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted, ref } from 'vue';
-import { RepositoryFactory } from '@/repositories/RepositoryFactory'
 //@ts-ignore
 import Multiselect from '@vueform/multiselect/dist/multiselect.vue2.js'
 import "@vueform/multiselect/themes/default.css"
+import { storeToRefs } from 'pinia';
+import { useRegionStore } from '@/stores/region';
 
-const RegionsRepository = RepositoryFactory.get('regions')
-const allRegions = ref<RegionListApi>({})
-const selectedRegion = ref()
-const selectRegionIsLoading = ref(false)
+const { allRegions, selectedRegion, selectRegionIsLoading } = storeToRefs(useRegionStore())
+const { getRegions } = useRegionStore()
 const optionIsOpen = ref(false)
 
 onBeforeMount(async () => {
-  try {
-    allRegions.value = await RegionsRepository.get()
-  } catch (error) {
-    console.log(error)
-  }
+  getRegions('')
 })
 
 const searchRegions = async (query: string) => {
-  selectRegionIsLoading.value = true
-  allRegions.value = await RegionsRepository.get(query)
-  selectRegionIsLoading.value = false
+  await getRegions(query)
   return allRegions.value.data
 }
 
