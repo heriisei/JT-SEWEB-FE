@@ -8,7 +8,7 @@ const props = defineProps<{
 
 type Libraries = ("drawing" | "geometry" | "localContext" | "marker" | "places" | "visualization")[];
 const apiOptions = {
-  apiKey: `${import.meta.env.VITE_GMAPS_API_KEY}`,
+  apiKey: `${import.meta.env.VITE_GMAPS_API_KEY ? import.meta.env.VITE_GMAPS_API_KEY : ''}`,
   version: 'beta',
   libraries: ['marker'] as Libraries,
 }
@@ -72,11 +72,11 @@ onMounted(() => {
 
 <style>
 .price-marker {
-  background-color: #4285F4;
-  border-radius: 8px;
+  background-color: var(--brand-base);
+  border-radius: 0.25rem;
   color: #FFFFFF;
   font-size: 14px;
-  padding: 10px 15px;
+  padding: 0.325rem 0.75rem;
   position: relative;
 }
 
@@ -90,7 +90,7 @@ onMounted(() => {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid #4285F4;
+  border-top: 8px solid var(--brand-base);
 }
 
 [class$=api-load-alpha-banner] {
