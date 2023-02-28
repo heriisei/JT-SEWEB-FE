@@ -8,6 +8,7 @@ const { n } = useI18n()
 
 const props = defineProps<{
   locations: MapMarker[];
+  mapHeight: string;
 }>()
 
 type Libraries = ("drawing" | "geometry" | "localContext" | "marker" | "places" | "visualization")[];
@@ -32,6 +33,7 @@ const displayMap = () => {
     mapId: 'DEMO_MAP_ID'
   };
   const mapEl = document.querySelector('#map')
+  mapEl?.classList.add(props.mapHeight)
   //@ts-ignore
   map.value = new google.maps.Map(mapEl, mapOptions);
   return map.value
@@ -42,7 +44,14 @@ const addMarkers = () => {
   props.locations.forEach((loc, index: number) => {
     // Create advance map marker with HTML element
     const priceMarker = document.createElement('div');
-    priceMarker.className = 'price-marker';
+    priceMarker.className = `price-marker ${loc.data.dateCategory.thisWeek
+      ? 'new'
+      : loc.data.dateCategory.olderThanAWeek
+        ? 'older-week'
+        : loc.data.dateCategory.olderThanAMonth
+          ? 'older-month'
+          : 'older-month'
+      }`;
     priceMarker.textContent = n(loc.data.priceLabel, 'currency');
 
     const markerOptions = {
@@ -74,18 +83,28 @@ onMounted(() => {
 <style scoped>
 #map {
   width: 100%;
-  height: 300px;
 }
 </style>
 
 <style>
 .price-marker {
-  background-color: var(--brand-base);
   border-radius: 0.25rem;
   color: #FFFFFF;
   font-size: 14px;
   padding: 0.325rem 0.75rem;
   position: relative;
+}
+
+.price-marker.new {
+  background-color: var(--brand-base);
+}
+
+.price-marker.older-week {
+  background-color: var(--c-black-blue-1);
+}
+
+.price-marker.older-month {
+  background-color: var(--c-black-2);
 }
 
 .price-marker::after {
@@ -98,7 +117,18 @@ onMounted(() => {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
+}
+
+.price-marker.new::after {
   border-top: 8px solid var(--brand-base);
+}
+
+.price-marker.older-week::after {
+  border-top: 8px solid var(--c-black-blue-1);
+}
+
+.price-marker.older-month::after {
+  border-top: 8px solid var(--c-black-2);
 }
 
 [class$=api-load-alpha-banner] {

@@ -34,8 +34,16 @@ interface Coordinate {
   lng: number;
 }
 
+interface DateCatogory {
+  thisWeek: boolean;
+  olderThanAWeek: boolean;
+  olderThanAMonth: boolean;
+}
+
 interface MapMarkerData {
   priceLabel: number;
+  date: string;
+  dateCategory: DateCatogory;
 }
 
 interface MapMarker {
