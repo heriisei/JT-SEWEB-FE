@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Loader } from '@googlemaps/js-api-loader'
+import { useI18n } from 'vue-i18n-bridge';
+
+const { n } = useI18n()
 
 const props = defineProps<{
-  locations: Record<string, any>[];
+  locations: MapMarker[];
 }>()
 
 type Libraries = ("drawing" | "geometry" | "localContext" | "marker" | "places" | "visualization")[];
@@ -23,8 +26,8 @@ loader.load().then(() => {
 
 const displayMap = () => {
   const mapOptions = {
-    center: { lat: -33.860664, lng: 151.208138 },
-    zoom: 14,
+    center: props.locations[0].coordinate,
+    zoom: 6,
     mapId: 'DEMO_MAP_ID'
   };
   const mapEl = document.querySelector('#map')
@@ -35,11 +38,11 @@ const displayMap = () => {
 
 const addMarkers = () => {
   const markers: Record<string, any> = []
-  props.locations.forEach((loc: Record<string, any>, index: number) => {
+  props.locations.forEach((loc, index: number) => {
     // Create advance map marker with HTML element
     const priceMarker = document.createElement('div');
     priceMarker.className = 'price-marker';
-    priceMarker.textContent = loc.name;
+    priceMarker.textContent = n(loc.data.priceLabel, 'currency');
 
     const markerOptions = {
       map: map.value,

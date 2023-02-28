@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 import { CBox, CButton } from '@chakra-ui/vue'
 import dayjs from 'dayjs';
 import FilterShrimpPricesByLocation from '@/components/filter/FilterShrimpPricesByLocation.vue';
 import GMaps from '@/components/maps/GMaps.vue';
+import { storeToRefs } from 'pinia';
+import { useRegionStore } from '@/stores/region';
+import { useShrimpPriceStore } from '@/stores/shrimpPrice';
+
+const { selectedRegion, selectRegionIsLoading } = storeToRefs(useRegionStore())
+const { price_for_map } = storeToRefs(useShrimpPriceStore())
+const { getShrimpPrices } = useShrimpPriceStore()
+
+onBeforeMount(async () => {
+  await getShrimpPrices('')
+})
 </script>
 
 <template>
@@ -27,20 +38,7 @@ import GMaps from '@/components/maps/GMaps.vue';
     </section>
     <section class="wrapper">
       <h2>persebaran harga udang size 100</h2>
-      <g-maps :locations="[
-        {
-          name: 'operaHouse',
-          coordinate: { lat: -33.8567844, lng: 151.213108 }
-        },
-        {
-          name: 'gaZoo',
-          coordinate: { lat: -33.8472767, lng: 151.2188164 }
-        },
-        {
-          name: 'manlyBeach',
-          coordinate: { lat: -33.8209738, lng: 151.2563253 }
-        }
-      ]">
+      <g-maps :locations="price_for_map">
       </g-maps>
     </section>
   </main>
