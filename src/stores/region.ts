@@ -5,7 +5,7 @@ import { RepositoryFactory } from '@/repositories/RepositoryFactory'
 export const useRegionStore = defineStore('region', () => {
   const RegionsRepository = RepositoryFactory.get('regions')
   const allRegions = ref<RegionListApi>({})
-  const selectedRegion = ref<Record<string, any>>()
+  const selectedRegion = ref<Regions>()
   const selectRegionIsLoading = ref(false)
 
   const switchIsLoading = (state: boolean) => {
