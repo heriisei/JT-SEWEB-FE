@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { Loader } from '@googlemaps/js-api-loader'
 import { useI18n } from 'vue-i18n-bridge';
+import router from '@/router';
 
 const { n } = useI18n()
 
@@ -51,6 +52,10 @@ const addMarkers = () => {
     }
     //@ts-ignore
     const marker: Record<string, any> = new google.maps.marker.AdvancedMarkerView(markerOptions)
+
+    marker.addListener('click', () => {
+      router.push(`/harga_udang/${loc.id}`)
+    });
     markers.push(marker)
   })
   return markers
