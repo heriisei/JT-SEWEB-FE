@@ -1,8 +1,10 @@
 import Vue from 'vue'
+import { createApp } from 'vue-demi'
 import App from './App.vue'
 import router from './router'
 import { createPinia, PiniaVuePlugin } from 'pinia'
 
+import { createI18n } from 'vue-i18n-bridge'
 import VueI18n from 'vue-i18n'
 import messages from './locales'
 
@@ -16,8 +18,9 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import 'dayjs/locale/id';
 
 // VueI18n
-Vue.use(VueI18n)
-const i18n = new VueI18n({
+Vue.use(VueI18n, { bridge: true })
+const i18n = createI18n({
+  legacy: false,
   locale: 'id',
   messages,
   numberFormats: {
@@ -36,7 +39,14 @@ const i18n = new VueI18n({
       },
     },
   },
+}, VueI18n)
+// For VueI18n Bridge
+const app = createApp({
+  setup() {
+    // Documentation: https://vue-i18n.intlify.dev/guide/migration/vue2.html#composition-api
+  }
 })
+app.use(i18n)
 
 // Dayjs
 dayjs.extend(localizedFormat);
@@ -77,7 +87,6 @@ Vue.use(Chakra, {
 
 new Vue({
   router,
-  i18n,
   pinia: createPinia(),
   render: (h) => h(CThemeProvider, [h(CReset), h(App)])
 }).$mount('#app')
